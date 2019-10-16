@@ -8,11 +8,38 @@
     }
 
     .sidebar {
+        lex: 1 1;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-evenly;
+        padding: 10px 0px 0 0;
+        width: 100%;
+    }
 
+    .sidebar .project-navigation {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .sidebar .project-navigation .project {
+        margin: 0 7px;
+    }
+
+    .project-navigation, .about, .contact {
+        margin-top: 12px;
     }
 
     .content {
         padding: 10px;
         max-width: calc(100% - 20px);
+    }
+
+    .gallery {
+        flex-direction: column;
+    }
+
+    .gallery .photo img {
+        height: auto;
+        margin-bottom: 10px;
     }
 }

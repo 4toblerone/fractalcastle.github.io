@@ -1,6 +1,17 @@
-import React from 'react';
+import React  from 'react';
+import { useMediaQuery } from 'react-responsive'
 import Mirage from '../projects/mirage';
 import SlowSide from '../projects/slow-side';
+
+const Desktop = ({ children }) => {
+    const isDesktop = useMediaQuery({ minWidth: 481 });
+    return isDesktop ? children : null
+};
+
+const Mobile = ({ children }) => {
+    const isMobile = useMediaQuery({ maxWidth: 480 });
+    return isMobile ? children : null
+};
 
 const ProjectMap = {
     'mirage': Mirage,
@@ -68,9 +79,18 @@ export class Gallery extends React.PureComponent {
         this.setIndex(index);
     };
 
+    renderPhoto(photo) {
+        return (
+            <div className={'photo'}>
+                <img src={photo} alt="Photo unavailable." />
+            </div>
+        );
+    }
+
     render() {
         const project = ProjectMap[this.props.project];
         const currentImg = this.state.index;
+
 
         if (!project) {
             return (
@@ -82,12 +102,17 @@ export class Gallery extends React.PureComponent {
 
         return (
             <div className="gallery">
-                <div className={'photo'}>
-                    <img src={photo} alt="Photo unavailable." />
-                </div>
-                <div className="navigation">
-                    <span onClick={this.onPreviouse}> &#60; <span>prev</span> </span><span onClick={this.onNext}> <span>next</span> ></span>
-                </div>
+                <Desktop>
+                    {this.renderPhoto(photo)}
+                    <div className="navigation">
+                        <span onClick={this.onPreviouse}> &#60; <span>prev</span> </span><span onClick={this.onNext}> <span>next</span> ></span>
+                    </div>
+                </Desktop>
+               <Mobile>
+                   {project.photos.map((p) => {
+                       return this.renderPhoto(p);
+                   })}
+               </Mobile>
             </div>
         );
     }
