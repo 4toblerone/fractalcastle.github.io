@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/fractalcastle/static/css/main.696fe81d.chunk.css",
+    "main.js": "/fractalcastle/static/js/main.01f0f392.chunk.js",
+    "main.js.map": "/fractalcastle/static/js/main.01f0f392.chunk.js.map",
+    "runtime-main.js": "/fractalcastle/static/js/runtime-main.98436a4c.js",
+    "runtime-main.js.map": "/fractalcastle/static/js/runtime-main.98436a4c.js.map",
+    "static/js/2.4d7ec260.chunk.js": "/fractalcastle/static/js/2.4d7ec260.chunk.js",
+    "static/js/2.4d7ec260.chunk.js.map": "/fractalcastle/static/js/2.4d7ec260.chunk.js.map",
+    "index.html": "/fractalcastle/index.html",
+    "precache-manifest.2476707b654bb73b56019c45133c47ca.js": "/fractalcastle/precache-manifest.2476707b654bb73b56019c45133c47ca.js",
+    "service-worker.js": "/fractalcastle/service-worker.js",
+    "static/css/main.696fe81d.chunk.css.map": "/fractalcastle/static/css/main.696fe81d.chunk.css.map"
+  }
+}
