@@ -85,7 +85,7 @@ export class Gallery extends React.PureComponent {
         const photosLength = currentProject.photos.length;
 
         if (index === 0) {
-            index = photosLength;
+            index = photosLength - 1;
         } else {
             index--;
         }
