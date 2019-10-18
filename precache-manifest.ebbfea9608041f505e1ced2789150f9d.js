@@ -1,18 +1,18 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "e4bb549a68fec9d21fdcfd8694e26566",
+    "revision": "5b641b5445292c1fbfedb24ed8b9f9ea",
     "url": "/fractalcastle/index.html"
   },
   {
-    "revision": "4e6eabd67a59df7740a3",
-    "url": "/fractalcastle/static/css/main.6d7d49b0.chunk.css"
+    "revision": "a891409faeac1a823efe",
+    "url": "/fractalcastle/static/css/main.fdd9ac36.chunk.css"
   },
   {
     "revision": "ab699c44a9072b91fec0",
     "url": "/fractalcastle/static/js/2.603ade2d.chunk.js"
   },
   {
-    "revision": "4e6eabd67a59df7740a3",
+    "revision": "a891409faeac1a823efe",
     "url": "/fractalcastle/static/js/main.22655e22.chunk.js"
   },
   {
