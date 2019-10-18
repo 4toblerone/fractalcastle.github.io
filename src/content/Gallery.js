@@ -70,7 +70,7 @@ export class Gallery extends React.PureComponent {
         const currentProject = ProjectMap[this.props.project];
         const photosLength = currentProject.photos.length;
 
-        if (index === photosLength) {
+        if (index === photosLength - 1) {
             index = 0;
         } else {
             index++;
