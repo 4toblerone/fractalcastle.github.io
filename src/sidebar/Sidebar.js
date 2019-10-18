@@ -15,9 +15,9 @@ function ProjectNav() {
 
     return (
        <Fragment>
-           <div className="about">
-               <Link to={'/'}>About</Link>
-           </div>
+           {/*<div className="about">*/}
+           {/*    <Link to={'/'}>About</Link>*/}
+           {/*</div>*/}
            <div className="project-navigation">
                {projects.map((p, i) => {
                    const projectLink = `/${p}`;

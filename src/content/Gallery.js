@@ -1,7 +1,11 @@
-import React  from 'react';
+import React, { Fragment } from 'react';
 import { useMediaQuery } from 'react-responsive'
+import ScrollToTop from 'react-scroll-up';
+import ReadMoreReact from 'read-more-react';
+import { ArrowUpward } from '@material-ui/icons';
 import Mirage from '../projects/mirage';
 import SlowSide from '../projects/slow-side';
+
 
 const Desktop = ({ children }) => {
     const isDesktop = useMediaQuery({ minWidth: 481 });
@@ -18,6 +22,11 @@ const ProjectMap = {
     'slow-side': SlowSide,
 };
 
+const ArrowKeys = {
+    LEFT: 37,
+    RIGHT: 39,
+};
+
 /**
  * Props.Project - Current active project ro show
  *
@@ -28,7 +37,8 @@ const ProjectMap = {
 export class Gallery extends React.PureComponent {
     state = {
         index: 0,
-        project: null
+        project: null,
+        showAbout: false,
     };
 
     static getDerivedStateFromProps(nextProps, prevState) {
@@ -46,6 +56,10 @@ export class Gallery extends React.PureComponent {
     }
 
     setIndex = (index) => {
+        if (this.state.showAbout) {
+            return;
+        }
+
         this.setState({
             index
         });
@@ -79,10 +93,46 @@ export class Gallery extends React.PureComponent {
         this.setIndex(index);
     };
 
+    toggleAbout = () => {
+      this.setState((state) => {
+          return {
+              showAbout: !state.showAbout,
+          }
+      })
+    };
+
+    componentDidMount(){
+        document.addEventListener("keydown", this.onKey.bind(this), false);
+    }
+
+    componentWillUnmount(){
+        document.removeEventListener("keydown", this.onKey.bind(this), false);
+    }
+
+    onKey(event) {
+        console.log(event);
+        if (event.keyCode === ArrowKeys.LEFT) {
+            return this.onPreviouse();
+        }
+
+        if (event.keyCode === ArrowKeys.RIGHT) {
+            return this.onNext();
+        }
+    }
+
     renderPhoto(photo) {
         return (
-            <div className={'photo'}>
-                <img src={photo} alt="Photo unavailable." />
+            <div className={'photo'} key={photo} >
+                <img src={photo} alt={photo} />
+            </div>
+        );
+    }
+
+    renderNavigation() {
+        return (
+            <div className="navigation">
+                <div className={'read-more-info'} onClick={this.toggleAbout} >Project Info</div>
+                <span onClick={this.onPreviouse}> &#60; <span>prev</span> </span><span onClick={this.onNext}> <span>next</span> ></span>
             </div>
         );
     }
@@ -90,7 +140,6 @@ export class Gallery extends React.PureComponent {
     render() {
         const project = ProjectMap[this.props.project];
         const currentImg = this.state.index;
-
 
         if (!project) {
             return (
@@ -103,15 +152,35 @@ export class Gallery extends React.PureComponent {
         return (
             <div className="gallery">
                 <Desktop>
-                    {this.renderPhoto(photo)}
-                    <div className="navigation">
-                        <span onClick={this.onPreviouse}> &#60; <span>prev</span> </span><span onClick={this.onNext}> <span>next</span> ></span>
-                    </div>
+                    {this.state.showAbout ? (
+                        <Fragment>
+                            <div className="read-more-container">
+                                {project.about}
+                                <div className="back-to-project" onClick={this.toggleAbout}>
+                                    Back to Project
+                                </div>
+                            </div>
+                            {this.renderNavigation()}
+                        </Fragment>
+                    ) : (
+                        <Fragment>
+                            {this.renderPhoto(photo, null, false)}
+                            {this.renderNavigation()}
+                        </Fragment>
+                    )}
                 </Desktop>
                <Mobile>
+                   <div className={'description'}>
+                       <ReadMoreReact
+                        text={project.about}
+                       />
+                   </div>
                    {project.photos.map((p) => {
                        return this.renderPhoto(p);
                    })}
+                   <ScrollToTop showUnder={160} duration={1000}>
+                       <div className={'scroll-to-top'}><ArrowUpward /></div>
+                   </ScrollToTop>
                </Mobile>
             </div>
         );
