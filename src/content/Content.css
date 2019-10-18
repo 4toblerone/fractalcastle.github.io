@@ -69,6 +69,7 @@
 
 .read-more-container {
     display: flex;
+    text-align: justify;
     width: 600px;
     flex-direction: column;
 }
@@ -85,6 +86,7 @@
 }
 
 .back-to-project {
+    cursor: pointer;
     align-self: flex-end;
     font-weight: 500;
     text-decoration: underline;
