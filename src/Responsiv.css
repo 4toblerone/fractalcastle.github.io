@@ -5,6 +5,7 @@
 
     .App {
         flex-direction: column;
+        height: auto;
     }
 
     .content {
@@ -40,17 +41,22 @@
 
     .gallery {
         flex-direction: column;
+        align-content: flex-start;
+        flex-wrap: nowrap;
     }
 
     .gallery .photo {
-        display: flex;
-        max-height: 75vh;
+        display: contents;
+        /*max-height: 75vh;*/
+        height: auto;
     }
 
     .gallery .photo img {
         height: auto;
         width: 100%;
         margin-bottom: 10px;
+        object-fit: unset;
+        object-position: unset;
     }
 
     .scroll-to-top {
