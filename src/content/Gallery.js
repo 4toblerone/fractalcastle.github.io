@@ -44,13 +44,17 @@ export class Gallery extends React.PureComponent {
     static getDerivedStateFromProps(nextProps, prevState) {
         const project = prevState.project;
         let index = prevState.index;
+        let showAbout = prevState.showAbout;
 
         if (project !== nextProps.project) {
             index = 0;
+            showAbout = false;
         }
+
 
         return {
             index,
+            showAbout,
             project: nextProps.project,
         }
     }
@@ -148,11 +152,13 @@ export class Gallery extends React.PureComponent {
         }
 
         const photo = project.photos[currentImg];
+        const aboutExists = project.about && project.about.length > 0;
 
+        console.log('about ', );
         return (
             <div className="gallery">
                 <Desktop>
-                    {this.state.showAbout ? (
+                    {this.state.showAbout && aboutExists ? (
                         <Fragment>
                             <div className="read-more-container">
                                 {project.about}
@@ -170,11 +176,13 @@ export class Gallery extends React.PureComponent {
                     )}
                 </Desktop>
                <Mobile>
-                   <div className={'description'}>
-                       <ReadMoreReact
-                        text={project.about}
-                       />
-                   </div>
+                   {aboutExists && (
+                       <div className={'description'}>
+                           <ReadMoreReact
+                            text={project.about}
+                           />
+                       </div>
+                   )}
                    {project.photos.map((p) => {
                        return this.renderPhoto(p);
                    })}
