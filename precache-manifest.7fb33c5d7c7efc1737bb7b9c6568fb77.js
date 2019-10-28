@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "e00ba6ea278784c5b9055eb00a93f497",
+    "revision": "df20c19f4f700801ef2ea88f767c7a15",
     "url": "/fractalcastle/index.html"
   },
   {
